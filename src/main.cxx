@@ -1,8 +1,9 @@
 
-#include <oda.h>
+#include <oda/oda.h>
 
 int main () {
-  dummy();
+  oda::dummy();
+  oda::System sys;
   return 0;
 }
 

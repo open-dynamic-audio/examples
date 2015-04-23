@@ -12,9 +12,9 @@ set (PROJECT_SRC src/main.cxx)
 
 get_target_property (ODA_INCLUDE_DIR oda INTERFACE_INCLUDE_DIRECTORIES)
 message (STATUS "Liboda include dir: ${ODA_INCLUDE_DIR}")
-include_directories (${OPENAL_INCLUDE_DIR})
-
 include_directories (${ODA_INCLUDE_DIR})
+
+include_directories (${OPENAL_INCLUDE_DIR})
 include_directories (src)
 
 add_executable (example ${PROJECT_SRC})
