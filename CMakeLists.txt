@@ -4,7 +4,8 @@ cmake_minimum_required (VERSION 2.8)
 set (PROJECT_NAME oda-examples)
 project (${PROJECT_NAME} C CXX)
 
-set (IMPORT_DIR ${CMAKE_INSTALL_PREFIX}/cmake CACHE FILEPATH "Where to look for exported target scripts.")
+set (IMPORT_DIR ${CMAKE_INSTALL_PREFIX}/cmake
+     CACHE FILEPATH "Where to look for exported target scripts.")
 
 # Include exported cmake spec from liboda
 # The targets is named "oda"
