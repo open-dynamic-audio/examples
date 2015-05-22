@@ -4,6 +4,7 @@
 
 #include <cstdio>
 
+
 int main () {
   oda::dummy();
   oda::System sys;
@@ -13,6 +14,10 @@ int main () {
     return 1;
   }
   std::printf("Opened device %s\n", status.description().c_str());
+
+  // oda::playSineWave(4, 440);
+  oda::playScale();
+
   sys.finish();
   return 0;
 }
