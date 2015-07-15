@@ -1,13 +1,12 @@
 
 #include <oda/oda.h>
-#include <oda/status.h>
 
 #include <cstdio>
 
 
 int main () {
   oda::dummy();
-  oda::System sys;
+  oda::Engine sys;
   oda::Status status = sys.start();
   oda::Player player;
   if (!status.ok()) {
