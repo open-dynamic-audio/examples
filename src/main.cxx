@@ -14,6 +14,15 @@ int main () {
   }
   std::printf("Opened device %s\n", status.description().c_str());
 
+  {
+    oda::Event ev;
+    oda::Status status = engine.eventInstance("../patches/example", &ev);
+    if (!status.ok()) {
+      std::printf("Error: %s\n", status.description().c_str());
+      engine.finish();
+      return 1;
+    }
+  }
   engine.testAudio();
 
   engine.finish();
