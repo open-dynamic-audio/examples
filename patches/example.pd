@@ -1,1 +1,5 @@
-#N canvas 604 1571 450 300 10;
+#N canvas 798 1394 593 437 10;
+#X obj 316 55 osc~ 440;
+#X obj 315 139 tabsend~ \$0-output;
+#X obj 198 234 table \$0-output 64;
+#X connect 0 0 1 0;

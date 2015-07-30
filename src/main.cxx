@@ -2,7 +2,8 @@
 #include <oda/oda.h>
 
 #include <cstdio>
-
+#include <thread>
+#include <chrono>
 
 int main () {
   oda::dummy();
@@ -23,7 +24,12 @@ int main () {
       return 1;
     }
   }
-  engine.testAudio();
+  //engine.testAudio();
+  
+  for (int i = 0; i < 1000; ++i) {
+    engine.tick(0.001);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   engine.finish();
   return 0;
