@@ -5,6 +5,10 @@
 #include <thread>
 #include <chrono>
 
+using std::chrono::steady_clock;
+using std::chrono::milliseconds;
+using std::this_thread::sleep_for;
+
 int main () {
   oda::dummy();
   oda::Engine engine;
@@ -27,8 +31,12 @@ int main () {
   //engine.testAudio();
   
   for (int i = 0; i < 1000; ++i) {
+    auto t1 = steady_clock::now();
     engine.tick(0.001);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    auto t2 = steady_clock::now();
+    auto one_milis = steady_clock::duration(milliseconds(1));
+    auto sleep_time = one_milis - (t2 - t1);
+    sleep_for(sleep_time);
   }
 
   engine.finish();
