@@ -21,22 +21,24 @@ int main () {
 
   {
     oda::Event ev;
-    oda::Status status = engine.eventInstance("../patches/example", &ev);
-    if (!status.ok()) {
-      std::printf("Error: %s\n", status.description().c_str());
-      engine.finish();
-      return 1;
+    {
+      oda::Status status = engine.eventInstance("../patches/example", &ev);
+      if (!status.ok()) {
+        std::printf("Error: %s\n", status.description().c_str());
+        engine.finish();
+        return 1;
+      }
     }
-  }
-  //engine.testAudio();
-  
-  for (int i = 0; i < 1000; ++i) {
-    auto t1 = steady_clock::now();
-    engine.tick(0.001);
-    auto t2 = steady_clock::now();
-    auto one_milis = steady_clock::duration(milliseconds(1));
-    auto sleep_time = one_milis - (t2 - t1);
-    sleep_for(sleep_time);
+    //engine.testAudio();
+    
+    for (int i = 0; i < 100; ++i) {
+      auto t1 = steady_clock::now();
+      engine.tick(0.01);
+      auto t2 = steady_clock::now();
+      auto one_milis = steady_clock::duration(milliseconds(10));
+      auto sleep_time = one_milis - (t2 - t1);
+      sleep_for(sleep_time);
+    }
   }
 
   engine.finish();
