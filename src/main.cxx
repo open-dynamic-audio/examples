@@ -31,7 +31,7 @@ int main () {
     }
     //engine.testAudio();
     
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 200; ++i) {
       auto t1 = steady_clock::now();
       engine.tick(0.01);
       auto t2 = steady_clock::now();
