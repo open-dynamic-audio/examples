@@ -6,16 +6,18 @@
 #X array \$0-output 4096 float 0;
 #X coords 0 1 4095 -1 200 140 1;
 #X restore 146 258 graph;
-#X obj 346 166 tabwrite~ \$0-output;
-#X obj 427 88 receive \$0-input;
-#X obj 385 50 bang~;
-#X obj 397 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 426 132 print;
-#X obj 316 55 osc~ 440;
+#X obj 388 242 tabwrite~ \$0-output;
+#X obj 382 36 receive \$0-input;
+#X obj 478 199 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 399 199 osc~ 440;
 #X obj 159 179 block~ 1024;
+#X obj 409 114 *~ 100;
+#X obj 405 82 osc~ 222;
+#X obj 407 151 +~ 389;
 #X connect 1 0 0 0;
 #X connect 4 0 3 0;
-#X connect 4 0 7 0;
 #X connect 6 0 3 0;
-#X connect 8 0 3 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 0;
+#X connect 10 0 6 0;

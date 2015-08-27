@@ -31,11 +31,13 @@ int main () {
     }
     //engine.testAudio();
     
-    for (int i = 0; i < 200; ++i) {
+    //engine.tick(4.0);
+    //sleep_for(steady_clock::duration(milliseconds(4000)));
+    for (int i = 0; i < 100; ++i) {
       auto t1 = steady_clock::now();
-      engine.tick(0.01);
+      engine.tick(0.02);
       auto t2 = steady_clock::now();
-      auto one_milis = steady_clock::duration(milliseconds(10));
+      auto one_milis = steady_clock::duration(milliseconds(20));
       auto sleep_time = one_milis - (t2 - t1);
       sleep_for(sleep_time);
     }
