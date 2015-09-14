@@ -20,6 +20,9 @@ int main () {
   std::printf("Opened device %s\n", status.description().c_str());
 
   {
+    //engine.testAudio();
+    //sleep_for(steady_clock::duration(milliseconds(3000)));
+
     oda::Event ev;
     {
       oda::Status status = engine.eventInstance("../patches/example", &ev);
@@ -29,11 +32,8 @@ int main () {
         return 1;
       }
     }
-    //engine.testAudio();
     
-    //engine.tick(4.0);
-    //sleep_for(steady_clock::duration(milliseconds(4000)));
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 200; ++i) {
       auto t1 = steady_clock::now();
       engine.tick(0.02);
       auto t2 = steady_clock::now();
