@@ -9,7 +9,7 @@ using std::chrono::steady_clock;
 using std::chrono::milliseconds;
 using std::this_thread::sleep_for;
 
-int main () {
+int main (int argc, char** argv) {
   oda::dummy();
   oda::Engine engine;
   oda::Status status = engine.start();
@@ -25,7 +25,9 @@ int main () {
 
     oda::Event ev;
     {
-      oda::Status status = engine.eventInstance("../patches/example", &ev);
+      std::string patch_input = argv[1];
+      patch_input = "../patches/" + patch_input;
+      oda::Status status = engine.eventInstance(patch_input, &ev);
       if (!status.ok()) {
         std::printf("Error: %s\n", status.description().c_str());
         engine.finish();
