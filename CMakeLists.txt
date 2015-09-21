@@ -4,12 +4,12 @@ cmake_minimum_required (VERSION 2.8)
 set (PROJECT_NAME oda-examples)
 project (${PROJECT_NAME} C CXX)
 
-set (IMPORT_DIR ${CMAKE_INSTALL_PREFIX}/cmake
+set (IMPORT_DIR ${CMAKE_INSTALL_PREFIX}
      CACHE FILEPATH "Where to look for exported target scripts.")
 
 # Include exported cmake spec from liboda
 # The targets is named "oda"
-include (${IMPORT_DIR}/liboda.cmake)
+include (${IMPORT_DIR}/cmake/liboda.cmake)
 
 # Source files
 set (PROJECT_SRC src/main.cxx)
@@ -29,6 +29,7 @@ target_link_libraries (example LINK_PUBLIC oda)
 set_target_properties (
   example PROPERTIES
   COMPILE_FLAGS "-std=c++11"
+  COMPILE_DEFINITIONS ODA_PATCHES_PATH="${IMPORT_DIR}/patches"
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 

@@ -18,6 +18,8 @@ int main (int argc, char** argv) {
     return 1;
   }
   std::printf("Opened device %s\n", status.description().c_str());
+  engine.registerPath("../patches/");
+  engine.registerPath(ODA_PATCHES_PATH);
 
   {
     //engine.testAudio();
@@ -26,7 +28,6 @@ int main (int argc, char** argv) {
     oda::Event ev;
     {
       std::string patch_input = argv[1];
-      patch_input = "../patches/" + patch_input;
       oda::Status status = engine.eventInstance(patch_input, &ev);
       if (!status.ok()) {
         std::printf("Error: %s\n", status.description().c_str());
