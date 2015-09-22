@@ -29,7 +29,8 @@ target_link_libraries (example LINK_PUBLIC oda)
 set_target_properties (
   example PROPERTIES
   COMPILE_FLAGS "-std=c++11"
-  COMPILE_DEFINITIONS ODA_PATCHES_PATH="${IMPORT_DIR}/patches"
+  COMPILE_DEFINITIONS
+  ODA_PATCHES_PATH="${CMAKE_SOURCE_DIR}/${IMPORT_DIR}/patches"
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 

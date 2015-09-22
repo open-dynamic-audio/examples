@@ -18,7 +18,7 @@ int main (int argc, char** argv) {
     return 1;
   }
   std::printf("Opened device %s\n", status.description().c_str());
-  engine.registerPath("../patches/");
+  engine.registerPath("../patches");
   engine.registerPath(ODA_PATCHES_PATH);
 
   {
