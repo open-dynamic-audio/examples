@@ -34,3 +34,13 @@ set_target_properties (
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 
+# Custom target: assets
+add_custom_target (
+  assets
+  COMMAND cmake -E copy patches/derp.ogg ${CMAKE_BINARY_DIR}
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  COMMENT "Building assets"
+)
+
+add_dependencies (example assets)
+
