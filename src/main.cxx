@@ -10,7 +10,13 @@ using std::chrono::milliseconds;
 using std::this_thread::sleep_for;
 
 int main (int argc, char** argv) {
-  oda::dummy();
+
+  if (argc < 2) {
+    std::printf("%s: Please specify event. Available ones are:\n%s",
+                argv[0], "\texample\n\tbizarre\n\togg\n");
+    return 1;
+  }
+
   oda::Engine engine;
   oda::Status status = engine.start();
   if (!status.ok()) {
