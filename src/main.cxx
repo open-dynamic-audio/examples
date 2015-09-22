@@ -32,6 +32,7 @@ int main (int argc, char** argv) {
     //sleep_for(steady_clock::duration(milliseconds(3000)));
 
     oda::Event ev;
+
     {
       std::string patch_input = argv[1];
       oda::Status status = engine.eventInstance(patch_input, &ev);
