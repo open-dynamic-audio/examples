@@ -14,29 +14,6 @@ set (CMAKE_C_FLAGS_RELEASE "-O3")
 # The targets is named "oda"
 include (${IMPORT_DIR}/cmake/liboda.cmake)
 
-# Source files
-set (PROJECT_SRC src/main.cxx)
-
-# Paths used by #include <...>
-include_directories (src)
-
-# Define our program target
-add_executable (example ${PROJECT_SRC})
-
-# Link with liboda
-target_link_libraries (example LINK_PUBLIC oda)
-
-# Set a few properties
-#  - Use C++11
-#  - Output binary to <build dir>/bin
-set_target_properties (
-  example PROPERTIES
-  COMPILE_FLAGS "-std=c++11"
-  COMPILE_DEFINITIONS
-  ODA_PATCHES_PATH="${IMPORT_DIR}/patches"
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
-)
-
 # Custom target: assets
 add_custom_target (
   assets
@@ -45,5 +22,5 @@ add_custom_target (
   COMMENT "Building assets"
 )
 
-add_dependencies (example assets)
+add_subdirectory (src)
 
