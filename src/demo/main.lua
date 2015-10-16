@@ -5,7 +5,11 @@ local oda = require 'oda'
 
 function love.load ()
   oda.start()
+  oda.registerPath("../patches") 
   oda.registerPath(ODA_PATCHES_PATH) 
+  local ev = oda.eventInstance "example"
+  --print(ev)
+  --print(getmetatable(ev))
 end
 
 function love.keypressed (key)
