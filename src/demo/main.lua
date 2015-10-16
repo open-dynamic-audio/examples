@@ -8,8 +8,6 @@ function love.load ()
   oda.registerPath("../patches") 
   oda.registerPath(ODA_PATCHES_PATH) 
   local ev = oda.eventInstance "example"
-  --print(ev)
-  --print(getmetatable(ev))
 end
 
 function love.keypressed (key)
@@ -18,8 +16,11 @@ function love.keypressed (key)
   end
 end
   
+local time = 0
+
 function love.update (dt)
   oda.tick()
+  time = time + dt
 end
 
 function love.quit ()
