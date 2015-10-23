@@ -18,6 +18,8 @@ include (${IMPORT_DIR}/cmake/liboda.cmake)
 add_custom_target (
   assets
   COMMAND cmake -E copy patches/derp.ogg ${CMAKE_BINARY_DIR}
+  COMMAND cmake -E copy patches/2_pianoogg.ogg ${CMAKE_BINARY_DIR}
+  COMMAND cmake -E copy patches/4_hihatclosedogg.ogg ${CMAKE_BINARY_DIR}
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   COMMENT "Building assets"
 )

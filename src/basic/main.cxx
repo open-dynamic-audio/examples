@@ -43,10 +43,10 @@ int main (int argc, char** argv) {
       }
     }
     
-    for (int i = 0; i < 200; ++i) {
+    for (int i = 0; i < 500; ++i) {
       auto t1 = steady_clock::now();
       if (i == 10) ev.pushCommand("start");
-      if (i == 80) ev.pushCommand("test");
+      //if (i == 80) ev.pushCommand("test");
       engine.tick(0.02);
       auto t2 = steady_clock::now();
       auto one_milis = steady_clock::duration(milliseconds(20));
