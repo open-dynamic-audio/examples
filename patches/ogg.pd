@@ -1,4 +1,4 @@
-#N canvas 209 384 681 444 10;
+#N canvas 209 387 705 561 16;
 #X obj 76 30 loadbang;
 #X obj 104 172 oggread~;
 #X obj 103 355 oda_panel \$0;
