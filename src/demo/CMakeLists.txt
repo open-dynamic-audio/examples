@@ -5,6 +5,7 @@ add_custom_target (
   COMMAND cmake -E copy main.lua ${CMAKE_BINARY_DIR}/demo
   COMMAND cmake -E copy conf.lua ${CMAKE_BINARY_DIR}/demo
   COMMAND cmake -E copy defs.lua ${CMAKE_BINARY_DIR}/demo
+  COMMAND cmake -E copy crystal-qubodup-ccby3-32-blue.png ${CMAKE_BINARY_DIR}/demo
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
