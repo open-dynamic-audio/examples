@@ -5,6 +5,7 @@ local ev
 local effects
 local items
 
+local p1joystick
 local ballX
 local ballY
 local gametime
@@ -13,9 +14,16 @@ local w, h = love.window.getDimensions()
 local collectible
 local quad
 
-local function newItem() 
-  table.insert(items, {love.math.random(1, w), love.math.random(1, h), love.math.random(1,4)})
+local function newItem(type) 
+  local itemType
+  if type == 0 then
+    itemType = love.math.random(1,4)
+  else
+    itemType = type
+  end
+  table.insert(items, {love.math.random(1, w), love.math.random(1, h), itemType})
 end
+
 
 function love.load ()
   oda.start()
@@ -29,9 +37,39 @@ function love.load ()
   gametime = 0
   collectible = love.graphics.newImage("crystal-qubodup-ccby3-32-blue.png")
   quad = love.graphics.newQuad(32,0,32,32,256,32)
-
-
+  p1joystick = nil
+  local joysticks = love.joystick.getJoysticks()
+  joystick = joysticks[1]
 end
+
+function love.joystickadded( joystick )
+  p1joystick = joystick
+end
+
+function love.joystickreleased(joystick, button)
+  if button == 1 then
+    newItem(1)
+  elseif button == 2 then
+    newItem(2)
+  elseif button == 3 then
+    newItem(3)
+  elseif button == 4 then
+    newItem(4)
+  elseif button == 9 then
+    eraseAll()
+  end
+end
+
+function eraseAll()
+  local cleanupVector = {}
+  for j,item in ipairs(items) do
+    table.insert(cleanupVector, j)
+  end
+  for k=#cleanupVector,1,-1 do
+    table.remove(items, cleanupVector[k])
+  end
+end
+
 
 function love.keypressed (key)
   print("[demo] Pressed '"..key.."'")
@@ -79,11 +117,25 @@ function love.update (dt)
   elseif love.keyboard.isDown("right") then
     ballX = math.min(w-20, ballX + 300*dt)
   end
-  ev:pushCommand('x', 127*ballX/w)
+
+  if joystick then 
+    if joystick:getHat(1) == "u" then
+      ballY = math.max(20, ballY - 300*dt)
+    elseif joystick:getHat(1) == "d" then
+      ballY = math.min(h-20, ballY + 300*dt)
+    elseif joystick:getHat(1) == "l" then
+      ballX = math.max(20, ballX - 300*dt)
+    elseif joystick:getHat(1) == "r" then
+      ballX = math.min(w-20, ballX + 300*dt)
+    end
+  end
+
+
+  ev:pushCommand('x', 70 + 57*ballX/w)
   ev:pushCommand('y', ballY/h)
 
   if gametime >= 5 then
-    newItem()
+    newItem(0)
     gametime = gametime - 5
   end
 
