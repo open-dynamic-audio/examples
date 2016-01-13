@@ -43,7 +43,7 @@ int main (int argc, char** argv) {
     
     for (int i = 0; i < 500; ++i) {
       auto t1 = steady_clock::now();
-      if (i == 10) ev.pushCommand("play", 3.14, "1337", 42);
+      if (i == 10) ev.pushCommand("foo", 3.14, "1337", 42);
       //if (i == 80) ev.pushCommand("test");
       engine.tick(0.02);
       auto t2 = steady_clock::now();
