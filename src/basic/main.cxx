@@ -18,14 +18,12 @@ int main (int argc, char** argv) {
   }
 
   oda::Engine engine;
-  oda::Status status = engine.start();
+  oda::Status status = engine.start({"../patches", ODA_PATCHES_PATH});
   if (!status.ok()) {
     std::printf("Error: %s\n", status.description().c_str());
     return 1;
   }
   std::printf("Opened device %s\n", status.description().c_str());
-  engine.registerPath("../patches");
-  engine.registerPath(ODA_PATCHES_PATH);
 
   {
     //engine.testAudio();
@@ -45,7 +43,7 @@ int main (int argc, char** argv) {
     
     for (int i = 0; i < 500; ++i) {
       auto t1 = steady_clock::now();
-      if (i == 10) ev.pushCommand("start", 3.14, "1337", 42);
+      if (i == 10) ev.pushCommand("foo", 3.14, "1337", 42);
       //if (i == 80) ev.pushCommand("test");
       engine.tick(0.02);
       auto t2 = steady_clock::now();
