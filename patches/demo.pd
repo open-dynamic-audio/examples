@@ -1,4 +1,4 @@
-#N canvas 544 156 681 731 16;
+#N canvas 544 159 681 731 16;
 #X obj 91 94 t a a;
 #X obj 92 506 +~;
 #X obj 138 192 oda_sound 2_pianoogg.ogg 4000;
@@ -9,7 +9,7 @@
 #X msg 165 124 segment 0 4;
 #X obj 165 90 loadbang;
 #X obj 75 12 openda_parameter \$0 foo;
-#X obj 91 610 openda_bus \$0;
+#X obj 93 614 openda_bus \$0;
 #X connect 0 0 3 0;
 #X connect 0 1 2 0;
 #X connect 1 0 5 0;

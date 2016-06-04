@@ -1,12 +1,15 @@
 
 #include <oda/oda.h>
 
-#include <cstdio>
-#include <thread>
 #include <chrono>
+#include <memory>
+#include <thread>
+
+#include <cstdio>
 
 using std::chrono::steady_clock;
 using std::chrono::milliseconds;
+using std::shared_ptr;
 using std::this_thread::sleep_for;
 
 int main (int argc, char** argv) {
@@ -29,7 +32,7 @@ int main (int argc, char** argv) {
     //engine.testAudio();
     //sleep_for(steady_clock::duration(milliseconds(3000)));
 
-    oda::Event ev;
+    shared_ptr<oda::SoundtrackEvent> ev;
 
     {
       std::string patch_input = argv[1];
@@ -43,7 +46,7 @@ int main (int argc, char** argv) {
     
     for (int i = 0; i < 500; ++i) {
       auto t1 = steady_clock::now();
-      if (i == 10) ev.pushCommand("foo", 3.14, "1337", 42);
+      if (i == 10) ev->pushCommand("foo", 3.14, "1337", 42);
       //if (i == 80) ev.pushCommand("test");
       engine.tick(0.02);
       auto t2 = steady_clock::now();
