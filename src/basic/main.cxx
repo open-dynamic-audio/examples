@@ -7,10 +7,12 @@
 
 #include <cstdio>
 
-using std::chrono::steady_clock;
+using std::chrono::high_resolution_clock;
 using std::chrono::milliseconds;
 using std::shared_ptr;
 using std::this_thread::sleep_for;
+
+using Clock = high_resolution_clock;
 
 int main (int argc, char** argv) {
 
@@ -43,20 +45,20 @@ int main (int argc, char** argv) {
         return 1;
       }
     }
-    
+
+    auto last = Clock::now();
+    double delta_time = 0.02;
+    auto sleep_time = Clock::duration(milliseconds(20));
+    std::vector<decltype(sleep_time.count())> times;
     for (int i = 0; i < 500; ++i) {
-      auto t1 = steady_clock::now();
       if (i == 10) ev->pushCommand("foo", 3.14, "1337", 42);
-      //if (i == 80) ev.pushCommand("test");
-      engine.tick(0.02);
-      auto t2 = steady_clock::now();
-      auto one_milis = steady_clock::duration(milliseconds(20));
-      auto sleep_time = one_milis - (t2 - t1);
-      sleep_for(sleep_time);
+      engine.tick(delta_time);
+      auto now = Clock::now();
+      sleep_for(sleep_time - (now - last));
+      last = Clock::now();
     }
   }
 
   engine.finish();
   return 0;
 }
-

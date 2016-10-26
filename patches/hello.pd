@@ -1,0 +1,20 @@
+#N canvas 627 383 718 476 16;
+#X obj 50 368 openda_bus \$0;
+#X obj 76 109 openda_parameter \$0 start;
+#X obj 244 307 loadbang;
+#X obj 48 23 osc~ 440;
+#X msg 244 335 1;
+#X text 352 308 This is the initial volume value;
+#X text 141 23 This is a sinusoidal oscillator at 440 Hz;
+#X text 144 180 Ramps the amplitude filter to 1 in 10 milliseconds
+;
+#X msg 76 150 1 100;
+#X obj 76 178 vline~;
+#X obj 49 214 *~;
+#X connect 1 0 8 0;
+#X connect 2 0 4 0;
+#X connect 3 0 10 0;
+#X connect 4 0 0 1;
+#X connect 8 0 9 0;
+#X connect 9 0 10 1;
+#X connect 10 0 0 0;

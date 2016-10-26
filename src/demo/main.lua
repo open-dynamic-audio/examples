@@ -7,8 +7,8 @@ local effects
 
 function love.load ()
   oda.start()
-  oda.registerPath("../patches") 
-  oda.registerPath(ODA_PATCHES_PATH) 
+  oda.registerPath("../patches")
+  oda.registerPath(ODA_PATCHES_PATH)
   ev = oda.eventInstance "example"
   effects = {}
 end
@@ -38,7 +38,7 @@ function love.update (dt)
   for k=#dead,1,-1 do
     table.remove(effects, dead[k])
   end
-  if love.mouse.isDown 'l' then
+  if love.mouse.isDown(1) then
     local x, y = love.mouse.getPosition()
     local w, h = love.window.getDimensions()
     ev:pushCommand('tune', 127*(x*y)/(w*h))
@@ -57,4 +57,3 @@ function love.draw ()
     love.graphics.circle('fill', effect[1], effect[2], 2*effect[3])
   end
 end
-
