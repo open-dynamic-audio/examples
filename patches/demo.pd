@@ -1,12 +1,12 @@
-#N canvas 521 198 1041 802 16;
+#N canvas 521 201 1041 802 16;
 #X obj 70 19 openda_parameter \$0 pos;
 #X obj 70 70 list split 1;
 #X obj 417 287 openda_osc;
 #X obj 76 286 openda_osc;
-#X obj 391 203 loadbang;
+#X obj 391 143 loadbang;
 #X obj 271 656 loadbang;
 #X msg 271 684 1;
-#X obj 732 206 loadbang;
+#X obj 732 146 loadbang;
 #X obj 70 98 * 24;
 #X obj 70 126 + 60;
 #X obj 70 154 mtof;
@@ -17,8 +17,8 @@
 #X obj 77 718 openda_bus \$0;
 #X obj 77 659 *~;
 #X obj 170 126 + 84;
-#X msg 391 231 rng 1 \, shape 2 \, vol 1;
-#X msg 732 234 rng 4 \, shape 3 \, vol 1;
+#X msg 391 171 rng 1 \, shape 2 \, vol 1;
+#X msg 732 174 rng 4 \, shape 3 \, vol 1;
 #X connect 0 0 1 0;
 #X connect 1 0 8 0;
 #X connect 1 1 14 0;
