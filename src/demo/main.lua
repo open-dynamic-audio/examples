@@ -2,49 +2,47 @@
 require 'defs'
 
 local oda = require 'oda'
+
+local SPEED = 128
+
 local ev
-local effects
+local W,H
+local avatar
 
 function love.load ()
   oda.start()
   oda.registerPath("../patches")
   oda.registerPath(ODA_PATCHES_PATH)
-  ev = oda.eventInstance "example"
-  effects = {}
+  ev = oda.eventInstance "demo"
+  W,H = love.graphics.getDimensions()
+  avatar = {}
+  avatar.x, avatar.y = W/2, H/2
 end
 
 function love.keypressed (key)
-  print("[demo] Pressed '"..key.."'")
   if key == 'escape' then
     love.event.push 'quit'
-  elseif key == 'return' then
-    ev:pushCommand('start')
-  elseif key == 'tab' then
-    ev:pushCommand('test')
-  else
-    ev:pushCommand('tune', key:byte(1))
   end
 end
 
+local DIRS = {
+  up = { x = 0, y = -1 },
+  down = { x = 0, y = 1 },
+  left = { x = -1, y = 0 },
+  right = { x = 1, y = 0 },
+}
+
 function love.update (dt)
-  local dead = {}
-  for i,effect in ipairs(effects) do
-    if effect[3] <= 0 then
-      table.insert(dead, i)
-    else
-      effect[3] = effect[3] - 1000*dt
+  local vx, vy = 0, 0
+  for key,dir in pairs(DIRS) do
+    if love.keyboard.isDown(key) then
+      vx, vy = vx + dir.x, vy + dir.y
     end
   end
-  for k=#dead,1,-1 do
-    table.remove(effects, dead[k])
-  end
-  if love.mouse.isDown(1) then
-    local x, y = love.mouse.getPosition()
-    local w, h = love.window.getDimensions()
-    ev:pushCommand('tune', 127*(x*y)/(w*h))
-    table.insert(effects, { x, y, 20 })
-  end
-  oda.tick()
+  avatar.x, avatar.y = avatar.x + SPEED*vx*dt, avatar.y + SPEED*vy*dt
+  ev:pushCommand("pos", avatar.x/W, avatar.y/H)
+  ev:setAudioSource(5*(avatar.x - W/2)/W, 5*(avatar.y - W/2)/W, 0)
+  oda.tick(dt)
 end
 
 function love.quit ()
@@ -53,7 +51,6 @@ function love.quit ()
 end
 
 function love.draw ()
-  for i,effect in ipairs(effects) do
-    love.graphics.circle('fill', effect[1], effect[2], 2*effect[3])
-  end
+  love.graphics.setColor(200, 100, 255)
+  love.graphics.circle('fill', avatar.x, avatar.y, 32, 16)
 end
