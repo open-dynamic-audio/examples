@@ -14,6 +14,15 @@ using std::this_thread::sleep_for;
 
 using Clock = high_resolution_clock;
 
+const auto ONE_SECOND = Clock::duration(milliseconds(1000));
+
+void gameTick (shared_ptr<oda::SoundtrackEvent> ev, double *seconds) {
+  auto sleep_time = Clock::duration(milliseconds(10 + rand()%16));
+  ev->pushCommand("step", static_cast<int>(*seconds));
+  sleep_for(sleep_time);
+  *seconds += 1.0*sleep_time.count()/ONE_SECOND.count();
+}
+
 int main (int argc, char** argv) {
 
   if (argc < 2) {
@@ -21,6 +30,8 @@ int main (int argc, char** argv) {
                 argv[0], "\texample\n\tbizarre\n\togg\n");
     return 1;
   }
+
+  std::srand(std::time(0));
 
   oda::Engine engine;
   oda::Status status = engine.start({"../patches", ODA_PATCHES_PATH});
@@ -31,9 +42,6 @@ int main (int argc, char** argv) {
   std::printf("Opened device %s\n", status.description().c_str());
 
   {
-    //engine.testAudio();
-    //sleep_for(steady_clock::duration(milliseconds(3000)));
-
     shared_ptr<oda::SoundtrackEvent> ev;
 
     {
@@ -46,16 +54,10 @@ int main (int argc, char** argv) {
       }
     }
 
-    auto last = Clock::now();
-    double delta_time = 0.02;
-    auto sleep_time = Clock::duration(milliseconds(20));
-    std::vector<decltype(sleep_time.count())> times;
-    for (int i = 0; i < 500; ++i) {
-      if (i == 10) ev->pushCommand("foo", 3.14, "1337", 42);
-      engine.tick(delta_time);
-      auto now = Clock::now();
-      sleep_for(sleep_time - (now - last));
-      last = Clock::now();
+    double seconds = 0.0;
+    while (seconds < 10.0) {
+      gameTick(ev, &seconds);
+      engine.tick(seconds);
     }
   }
 
