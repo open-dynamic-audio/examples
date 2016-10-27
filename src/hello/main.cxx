@@ -37,7 +37,6 @@ int main () {
       return 1;
     }
 
-    ev->pushCommand("start");
     engine.tick(DURATION);
     sleep_for(DURATION);
   }
