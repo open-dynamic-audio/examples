@@ -41,7 +41,7 @@ function love.update (dt)
   end
   avatar.x, avatar.y = avatar.x + SPEED*vx*dt, avatar.y + SPEED*vy*dt
   ev:pushCommand("pos", avatar.x/W, avatar.y/H)
-  ev:setAudioSource(5*(avatar.x - W/2)/W, 5*(avatar.y - W/2)/W, 0)
+  ev:setAudioSource(5*(avatar.x - W/2)/W, 5*(avatar.y - H/2)/H, 0)
   oda.tick(dt)
 end
 

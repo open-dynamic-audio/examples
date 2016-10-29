@@ -36,7 +36,7 @@ int main (int argc, char** argv) {
     oda::Status status = engine.start({"../patches", ODA_PATCHES_PATH});
     if (!status.ok()) {
       cout << "Error: " << status.description() << endl;
-      return 1;
+      return -1;
     }
     cout << "Opened device " << status.description() << endl;
   }
@@ -48,7 +48,7 @@ int main (int argc, char** argv) {
       if (!status.ok()) {
         cout << "Error: " << status.description() << endl;
         engine.finish();
-        return 1;
+        return -1;
       }
     }
 
