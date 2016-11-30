@@ -1,6 +1,5 @@
 
-Liboda examples
+VORPAL examples
 ===============
 
-Example programs for our open dynamic audio library
-
+Example programs for our VORPAL middleware
