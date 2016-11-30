@@ -1,7 +1,7 @@
 #N canvas 757 208 557 620 16;
-#X obj 93 494 openda_bus \$0;
-#X obj 55 60 openda_parameter \$0 horizontal;
-#X obj 190 131 openda_parameter \$0 vertical;
+#X obj 93 494 vorpal_bus \$0;
+#X obj 55 60 vorpal_parameter \$0 horizontal;
+#X obj 190 131 vorpal_parameter \$0 vertical;
 #X obj 55 198 * 400;
 #X obj 190 256 * 400;
 #X connect 1 0 3 0;

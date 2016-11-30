@@ -1,10 +1,10 @@
 #N canvas 654 333 629 508 16;
-#X obj 158 351 openda_bus \$0;
+#X obj 158 351 vorpal_bus \$0;
 #X obj 158 319 osc~;
 #X obj 158 234 mtof;
 #X msg 158 262 \$1 100;
 #X obj 158 290 line~;
-#X obj 158 106 openda_parameter \$0 step;
+#X obj 158 106 vorpal_parameter \$0 step;
 #X obj 158 147 * 5;
 #X obj 158 205 + 60;
 #X msg 352 306 1;

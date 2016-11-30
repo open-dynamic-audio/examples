@@ -10,7 +10,7 @@
 #X msg 46 127 start;
 #X obj 284 122 r \$0-command;
 #X obj 284 162 print;
-#X obj 102 376 openda_bus \$0;
+#X obj 102 376 vorpal_bus \$0;
 #X obj 296 312 loadbang;
 #X msg 296 340 1;
 #X connect 0 0 7 0;

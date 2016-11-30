@@ -8,8 +8,8 @@
 #X msg 66 48 play;
 #X msg 165 124 segment 0 4;
 #X obj 165 90 loadbang;
-#X obj 75 12 openda_parameter \$0 foo;
-#X obj 93 614 openda_bus \$0;
+#X obj 75 12 vorpal_parameter \$0 foo;
+#X obj 93 614 vorpal_bus \$0;
 #X connect 0 0 3 0;
 #X connect 0 1 2 0;
 #X connect 1 0 5 0;

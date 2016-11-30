@@ -5,8 +5,8 @@ set (VORPAL_EXAMPLES_BASIC_SRC main.cxx)
 # Define our program target
 add_executable (basic ${VORPAL_EXAMPLES_BASIC_SRC})
 
-# Link with liboda
-target_link_libraries (basic LINK_PUBLIC oda)
+# Link with libvorpal
+target_link_libraries (basic LINK_PUBLIC vorpal)
 
 # Set a few properties
 #  - Use C++11

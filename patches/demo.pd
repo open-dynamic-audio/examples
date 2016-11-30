@@ -1,8 +1,8 @@
 #N canvas 521 201 1041 802 16;
-#X obj 70 19 openda_parameter \$0 pos;
+#X obj 70 19 vorpal_parameter \$0 pos;
 #X obj 70 70 list split 1;
-#X obj 417 287 openda_osc;
-#X obj 76 286 openda_osc;
+#X obj 417 287 vorpal_osc;
+#X obj 76 286 vorpal_osc;
 #X obj 391 143 loadbang;
 #X obj 271 656 loadbang;
 #X msg 271 684 1;
@@ -14,7 +14,7 @@
 #X obj 170 154 mtof;
 #X msg 170 182 freq \$1;
 #X obj 170 98 * -24;
-#X obj 77 718 openda_bus \$0;
+#X obj 77 718 vorpal_bus \$0;
 #X obj 77 659 *~;
 #X obj 170 126 + 84;
 #X msg 391 171 rng 1 \, shape 2 \, vol 1;
