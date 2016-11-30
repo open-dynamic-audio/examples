@@ -1,7 +1,7 @@
 
 require 'defs'
 
-local oda = require 'oda'
+local vorpal = require 'vorpal'
 
 local SPEED = 128
 
@@ -10,10 +10,10 @@ local W,H
 local avatar
 
 function love.load ()
-  oda.start()
-  oda.registerPath("../patches")
-  oda.registerPath(ODA_PATCHES_PATH)
-  ev = oda.eventInstance "demo"
+  vorpal.start()
+  vorpal.registerPath("../patches")
+  vorpal.registerPath(VORPAL_PATCHES_PATH)
+  ev = vorpal.eventInstance "demo"
   W,H = love.graphics.getDimensions()
   avatar = {}
   avatar.x, avatar.y = W/2, H/2
@@ -42,12 +42,12 @@ function love.update (dt)
   avatar.x, avatar.y = avatar.x + SPEED*vx*dt, avatar.y + SPEED*vy*dt
   ev:pushCommand("pos", avatar.x/W, avatar.y/H)
   ev:setAudioSource(5*(avatar.x - W/2)/W, 5*(avatar.y - H/2)/H, 0)
-  oda.tick(dt)
+  vorpal.tick(dt)
 end
 
 function love.quit ()
   ev = nil
-  oda.finish()
+  vorpal.finish()
 end
 
 function love.draw ()

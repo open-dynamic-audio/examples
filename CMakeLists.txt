@@ -1,7 +1,7 @@
 
 cmake_minimum_required (VERSION 2.8)
 
-set (PROJECT_NAME oda-examples)
+set (PROJECT_NAME vorpal-examples)
 project (${PROJECT_NAME} C CXX)
 
 set (IMPORT_DIR ${CMAKE_INSTALL_PREFIX}
@@ -12,7 +12,7 @@ set (CMAKE_C_FLAGS_RELEASE "-O3")
 
 # Include exported cmake spec from liboda
 # The targets is named "oda"
-include (${IMPORT_DIR}/cmake/liboda.cmake)
+include (${IMPORT_DIR}/cmake/libvorpal.cmake)
 
 # Custom target: assets
 add_custom_target (
@@ -25,4 +25,3 @@ add_custom_target (
 )
 
 add_subdirectory (src)
-

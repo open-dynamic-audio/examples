@@ -1,5 +1,5 @@
 #N canvas 627 386 720 298 16;
-#X obj 46 173 openda_bus \$0;
+#X obj 46 173 vorpal_bus \$0;
 #X obj 240 112 loadbang;
 #X obj 47 69 osc~ 440;
 #X msg 240 140 1;

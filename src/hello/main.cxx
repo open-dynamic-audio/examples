@@ -1,5 +1,5 @@
 
-#include <oda/oda.h>
+#include <vorpal/vorpal.h>
 
 #include <chrono>
 #include <memory>
@@ -21,16 +21,16 @@ void sleep_for (double seconds) {
 }
 
 int main () {
-  oda::Engine engine;
-  oda::Status status = oda::Status::OK("");
-  if (!(status = engine.start({"../patches", ODA_PATCHES_PATH})).ok()) {
+  vorpal::Engine engine;
+  vorpal::Status status = vorpal::Status::OK("");
+  if (!(status = engine.start({"../patches", VORPAL_PATCHES_PATH})).ok()) {
     std::printf("Error: %s\n", status.description().c_str());
     return 1;
   }
   std::printf("Opened device %s\n", status.description().c_str());
 
   {
-    shared_ptr<oda::SoundtrackEvent> ev;
+    shared_ptr<vorpal::SoundtrackEvent> ev;
     if (!(status = engine.eventInstance("hello", &ev)).ok()) {
       std::printf("Error: %s\n", status.description().c_str());
       engine.finish();

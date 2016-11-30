@@ -1,5 +1,5 @@
 
-#include <oda/oda.h>
+#include <vorpal/vorpal.h>
 
 #include <chrono>
 #include <iostream>
@@ -21,7 +21,7 @@ using Clock = high_resolution_clock;
 
 const auto ONE_SECOND = Clock::duration(milliseconds(1000));
 
-void gameTick (double delta, shared_ptr<oda::SoundtrackEvent> ev);
+void gameTick (double delta, shared_ptr<vorpal::SoundtrackEvent> ev);
 
 int main (int argc, char** argv) {
   string event_name = "basic";
@@ -31,9 +31,9 @@ int main (int argc, char** argv) {
 
   std::srand(std::time(0));
 
-  oda::Engine engine;
+  vorpal::Engine engine;
   {
-    oda::Status status = engine.start({"../patches", ODA_PATCHES_PATH});
+    vorpal::Status status = engine.start({"../patches", VORPAL_PATCHES_PATH});
     if (!status.ok()) {
       cout << "Error: " << status.description() << endl;
       return -1;
@@ -42,9 +42,9 @@ int main (int argc, char** argv) {
   }
 
   {
-    shared_ptr<oda::SoundtrackEvent> ev;
+    shared_ptr<vorpal::SoundtrackEvent> ev;
     {
-      oda::Status status = engine.eventInstance(event_name, &ev);
+      vorpal::Status status = engine.eventInstance(event_name, &ev);
       if (!status.ok()) {
         cout << "Error: " << status.description() << endl;
         engine.finish();
@@ -67,7 +67,7 @@ int main (int argc, char** argv) {
   return 0;
 }
 
-void gameTick (double delta, shared_ptr<oda::SoundtrackEvent> ev) {
+void gameTick (double delta, shared_ptr<vorpal::SoundtrackEvent> ev) {
   static double total = 0.0;
   auto sleep_time = Clock::duration(milliseconds(16 + rand()%16));
   total += delta;
